@@ -23,8 +23,4 @@ public class Controller {
         return service.getWords(wordSize);
     }
 
-    public List<String> findWord(List<String> inputList, List<String> exclude, List<String> include) {
-        return service.excludeFilter(inputList, exclude)
-                ;
-    }
 }

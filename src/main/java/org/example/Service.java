@@ -37,5 +37,5 @@ public class Service {
     public StringListPuzzle getWords(Integer wordSize) throws SQLException {
         return wordDAO.getWords(wordSize);
     }
-    
+
 }

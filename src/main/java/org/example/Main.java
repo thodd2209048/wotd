@@ -13,5 +13,7 @@ public class Main {
         StringListPuzzle newStringListPuzzle = stringListPuzzle.includeFilter(List.of("e", "a"));
         StringListPuzzle newStringListPuzzle2 = newStringListPuzzle.excludeFilter(List.of("t", "av"));
         System.out.println(newStringListPuzzle2);
+        StringListPuzzle newStringListPuzzle3 = newStringListPuzzle2.singleLetterFilter(3, "e", null);
+        System.out.println(newStringListPuzzle3);
     }
 }
