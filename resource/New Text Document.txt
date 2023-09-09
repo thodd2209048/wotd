@@ -1,0 +1,53 @@
+You can save the hassle of making purchases manually over time by setting automatic purchases with our new Recurring Buy function on the Binance website and App. Check out the App and website step-by-step guide by clicking on the above tabs.
+How to use Recurring Buy on Binance App?
+1. Log in to your Binance account and tap [Credit/Debit Card] on the homepage.
+
+2. Tap [Enable] next to [Recurring Buy] to enable the feature.
+
+3. Select the fiat currency you want to use and the cryptocurrency you want to purchase.
+
+4. Tap on the date to set up the frequency of your recurring purchase from daily, weekly, bi-weekly, and monthly. You can select the day and time for the recurring purchase, too. Tap [Confirm] to save your preference.
+
+
+5. Select your payment method. Tap [Change Card] to choose from your existing cards or add a new card.
+
+5.1.To add a new card, tap [Pay with new card] and enter your card details.
+
+5.2. To manage your existing cards, tap [Manage].
+
+5.3. To remove a card, tap on the trash bin icon next to it.
+You can only save up to 5 cards, and only Visa and Mastercard Credit/Debit cards are supported.
+
+Please note that if the Credit/Debit card you want to remove is linked to any of your existing Recurring Buy plans, you will be prompted to cancel the plan first before you can remove the card.
+You can tap [View Plans] to view your ongoing plans.
+
+
+6. You will see the order details. Check and tap [Confirm] within 1 minute. After 1 minute, the price and the amount of crypto you will get will be recalculated. You can tap [Refresh] to see the latest market price.
+
+7. You might be redirected to this page when we process your order. You can check your order status by tapping [View history] or [Refresh].
+
+8. Your purchase of the recurring buy plan is now completed.
+
+If your Recurring Buy order fails, tap [Try again] to get a new quotation.
+
+10. You will see a new quotation. Tap [Accept New Quotation] within 1 minute, or [Cancel Payment] if you do not wish to make the purchase.
+
+
+How to manage Recurring Buy on Binance App?
+1. To manage your Recurring Buy plans, tap the following icon.
+
+2. Select [Recurring Plan] to view all orders. Tap on the plan you would like to change.
+
+3. Tap [Manage].
+
+To change your plan:
+4.1.1. You can change the frequency by tapping [Edit Frequency].
+
+4.1.2. Check your new plan details and tap [Confirm].
+
+4.1.3. Your recurring buy plan has been changed.
+
+To stop your plan:
+4.2.1. Tap [Stop] to stop the plan.
+
+4.2.2. Once you tap [Confirm], your Recurring Buy plan will stop immediately.
