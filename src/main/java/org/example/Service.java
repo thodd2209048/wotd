@@ -34,7 +34,8 @@ public class Service {
         wordDAO.insertWords(wordList);
     }
 
-    public List<Word> getWords(Integer wordSize) throws SQLException {
+    public StringListPuzzle getWords(Integer wordSize) throws SQLException {
         return wordDAO.getWords(wordSize);
     }
+    
 }

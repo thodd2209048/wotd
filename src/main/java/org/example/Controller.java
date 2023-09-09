@@ -19,7 +19,12 @@ public class Controller {
         service.addNewWord(path);
     }
 
-    public List<Word> getWords(Integer wordSize) throws SQLException {
+    public StringListPuzzle getWords(Integer wordSize) throws SQLException {
         return service.getWords(wordSize);
+    }
+
+    public List<String> findWord(List<String> inputList, List<String> exclude, List<String> include) {
+        return service.excludeFilter(inputList, exclude)
+                ;
     }
 }

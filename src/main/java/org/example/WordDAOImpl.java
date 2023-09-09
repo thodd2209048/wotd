@@ -51,8 +51,8 @@ public class WordDAOImpl implements WordDAO {
     }
 
     @Override
-    public List<Word> getWords(Integer wordSize) throws SQLException {
-        List<Word> wordsResult = new ArrayList<>();
+    public StringListPuzzle getWords(Integer wordSize) throws SQLException {
+        StringListPuzzle stringListPuzzle = new StringListPuzzle(new ArrayList<>());
         PreparedStatement statement = connection.prepareStatement(
                 "SELECT * FROM words WHERE length = ?"
         );
@@ -61,10 +61,9 @@ public class WordDAOImpl implements WordDAO {
 
         while(resultSet.next()){
             String word = resultSet.getString("word");
-            Integer length = resultSet.getInt("length");
-            wordsResult.add(new Word(word, length));
+            stringListPuzzle.getInputList().add(word);
         }
         statement.close();
-        return wordsResult;
+        return stringListPuzzle;
     }
 }
