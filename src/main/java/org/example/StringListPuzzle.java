@@ -41,7 +41,6 @@ public class StringListPuzzle {
         } else {
             newList = inputList;
         }
-        System.out.println(newList);
         if (incorrectLetters !=null){
             newList.removeIf(w -> incorrectLetters.stream().anyMatch(letter -> w.charAt(index)==letter.charAt(0)));
         }

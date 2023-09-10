@@ -27,4 +27,12 @@ public class Controller {
     public void addWordsFromFolder(String folderName) throws SQLException, IOException {
         service.addWordsFromFolder(folderName);
     }
+
+    public void cleanDB() throws SQLException {
+        service.cleanDB();
+    }
+
+    public void closeConnection() throws SQLException{
+        service.closeConnection();
+    }
 }

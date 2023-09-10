@@ -24,7 +24,7 @@ public class Service {
         Set<String> wordSet = new HashSet<>();
         List<Word> wordList = new ArrayList<>();
         Stream<String> lines = Files.lines(path);
-        lines.flatMap(line -> Stream.of(line.split("[\\s+,:'().\\[\\]{}?!`~*@#$%^&\\/\\-\"]")))
+        lines.flatMap(line -> Stream.of(line.split("[\\s+,:’'().\\[\\]{}?!`~*@#$%^&\\/\\-\"]")))
                 .filter(word -> word.matches(".*[a-zA-Z].*") && !word.contains("'"))
                 .filter(word -> word.length() < 9 && word.length() > 2)
                 .map(String::toLowerCase)
@@ -49,5 +49,13 @@ public class Service {
                 Files.move(entry, path.resolve("old-resource").resolve(entry.getFileName()));
             }
         }
+    }
+
+    public void cleanDB() throws SQLException {
+        wordDAO.cleanDB();
+    }
+
+    public void closeConnection() throws SQLException{
+        wordDAO.close();
     }
 }

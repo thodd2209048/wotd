@@ -25,7 +25,8 @@ public class WordDAOImpl implements WordDAO {
         }
     }
 
-    public static void close() throws SQLException {
+    @Override
+    public void close() throws SQLException {
         if (connection != null) {
             connection.close();
         }
@@ -65,5 +66,13 @@ public class WordDAOImpl implements WordDAO {
         }
         statement.close();
         return stringListPuzzle;
+    }
+
+    public void cleanDB() throws SQLException {
+        Statement statement = connection.createStatement();
+        statement.executeUpdate("DELETE FROM words " +
+                " WHERE word ~ '[^a-zA-Z]' ");
+
+        statement.close();
     }
 }
