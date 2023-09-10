@@ -24,14 +24,16 @@ public class StringListPuzzle {
         return new StringListPuzzle(newList);
     }
 
-    public StringListPuzzle singleLetterFilter(Integer index, String correctLetter, List<String> incorrectLetters){
-        if (correctLetter == null || correctLetter.length() != 1) {
+    public StringListPuzzle singleLetterFilter(Integer position, String correctLetter, List<String> incorrectLetters){
+        Integer index = position - 1;
+        if (correctLetter !=null && correctLetter.length() > 1) {
             throw new IllegalArgumentException(correctLetter + ": correctLetter is invalid input");
         }
         if (index + 1 >inputList.get(0).length() ){
             throw new IllegalArgumentException(index + ": index is invalid input");
         }
         List<String> newList = new ArrayList<>();
+
         if (correctLetter != null) {
             newList = inputList.stream()
                     .filter(w -> w.length() > index && w.charAt(index) == correctLetter.charAt(0))
@@ -39,8 +41,9 @@ public class StringListPuzzle {
         } else {
             newList = inputList;
         }
+        System.out.println(newList);
         if (incorrectLetters !=null){
-            newList.removeIf(w -> incorrectLetters.stream().anyMatch(i -> w.contains(i)));
+            newList.removeIf(w -> incorrectLetters.stream().anyMatch(letter -> w.charAt(index)==letter.charAt(0)));
         }
         return new StringListPuzzle(newList);
     }
