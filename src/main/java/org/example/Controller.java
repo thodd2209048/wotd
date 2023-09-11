@@ -3,18 +3,9 @@ package org.example;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 
 @Data
 @AllArgsConstructor
@@ -33,11 +24,11 @@ public class Controller {
         service.cleanDB();
     }
 
-    public void closeConnection() throws SQLException{
+    public void closeConnection() throws SQLException {
         service.closeConnection();
     }
 
-    public BigInteger sizeOfDB() throws SQLException{
+    public BigInteger sizeOfDB() throws SQLException {
         return service.sizeOfDB();
     }
 }

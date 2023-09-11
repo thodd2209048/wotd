@@ -47,9 +47,18 @@ public class WordDAOImpl implements WordDAO {
             statement.setInt(2, word.getWordSize());
             statement.addBatch();
         }
-        statement.executeBatch();
+        int[] batchResult = statement.executeBatch();
+        int successfulStatements = 0;
+
+        for (int result : batchResult) {
+            if (result == Statement.SUCCESS_NO_INFO || result > 0) {
+                successfulStatements++;
+            }
+        }
+
         connection.commit();
         statement.close();
+        System.out.println("Inserted " + successfulStatements + " row into the database.");
     }
 
     @Override

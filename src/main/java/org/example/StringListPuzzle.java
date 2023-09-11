@@ -9,45 +9,47 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class StringListPuzzle {
-    private List<String> inputList = new ArrayList<>();
+    private List<String> inputList;
 
     public StringListPuzzle excludeFilter(List<String> exclude) {
         List<String> newList = new ArrayList<>(inputList);
-        newList.removeIf(word -> exclude.stream().anyMatch(e -> word.contains(e)));
+        newList.removeIf(word -> exclude.stream().anyMatch(word::contains));
         return new StringListPuzzle(newList);
-    };
+    }
 
     public StringListPuzzle includeFilter(List<String> include){
         List<String> newList = inputList.stream()
-                .filter(word -> include.stream().allMatch(i -> word.contains(i)))
+                .filter(word -> include.stream().allMatch(word::contains))
                 .toList();
         return new StringListPuzzle(newList);
     }
 
     public StringListPuzzle singleLetterFilter(Integer position, String correctLetter, List<String> incorrectLetters){
         try{
-            Integer index = position - 1;
             if(inputList.isEmpty()){
-                throw new RuntimeException("inputList is empty");
+                throw new RuntimeException("InputList is empty. The answer is not in the database.");
             }
             if (correctLetter !=null && correctLetter.length() > 1) {
                 throw new IllegalArgumentException(correctLetter + ": correctLetter is invalid input");
             }
-            if (index + 1 >inputList.get(0).length() ){
-                throw new IllegalArgumentException(index + ": index is invalid input");
+            if (position < 1 || position > inputList.get(0).length()){
+                throw new IllegalArgumentException((position - 1) + ": position is invalid input");
             }
-            List<String> newList = new ArrayList<>();
+            List<String> newList = inputList.stream()
+                    .filter(w -> {
+                        if(correctLetter != null){
+                            return w.charAt(position - 1) == correctLetter.charAt(0);
+                        }
+                        return true;
+                    })
+                    .filter(w-> {
+                        if(incorrectLetters != null){
+                            return incorrectLetters.stream().noneMatch(letter -> w.charAt(position - 1) == letter.charAt(0));
+                        }
+                        return true;
+                    })
+                    .toList();
 
-            if (correctLetter != null) {
-                newList = inputList.stream()
-                        .filter(w -> w.length() > index && w.charAt(index) == correctLetter.charAt(0))
-                        .toList();
-            } else {
-                newList = inputList;
-            }
-            if (incorrectLetters !=null){
-                newList.removeIf(w -> incorrectLetters.stream().anyMatch(letter -> w.charAt(index)==letter.charAt(0)));
-            }
             return new StringListPuzzle(newList);
         } catch (RuntimeException e){
             System.out.println("Exception in position " + position);
