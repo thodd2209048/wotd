@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,5 +35,9 @@ public class Controller {
 
     public void closeConnection() throws SQLException{
         service.closeConnection();
+    }
+
+    public BigInteger sizeOfDB() throws SQLException{
+        return service.sizeOfDB();
     }
 }

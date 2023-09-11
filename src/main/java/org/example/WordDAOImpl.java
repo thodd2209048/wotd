@@ -3,6 +3,7 @@ package org.example;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigInteger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,5 +75,18 @@ public class WordDAOImpl implements WordDAO {
                 " WHERE word ~ '[^a-zA-Z]' ");
 
         statement.close();
+    }
+
+    public BigInteger sizeOfDB() throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(
+                "SELECT COUNT(*) FROM words;"
+        );
+        BigInteger dbSize = BigInteger.ZERO;
+        if (resultSet.next()) {
+            dbSize = BigInteger.valueOf(resultSet.getLong(1));
+        }
+        statement.close();
+        return dbSize;
     }
 }
