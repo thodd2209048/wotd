@@ -21,10 +21,9 @@ import java.util.stream.Stream;
 public class Service {
     private final WordDAO wordDAO = new WordDAOImpl();
 
-    public void addNewWord(Path path) throws IOException, SQLException {
+    public void addWordsFromLines(Stream<String> lines) throws IOException, SQLException {
 
         Set<String> wordSet = new HashSet<>();
-        Stream<String> lines = Files.lines(path);
         lines.flatMap(line -> Stream.of(line.split("[\\s+,:’'‘“().\\[\\]{}?!`~*@#$%^&\\/\\-\"]")))
                 .filter(word -> word.matches(".*[a-zA-Z].*") && !word.matches(".*\\d.*") && !word.contains("'"))
                 .filter(word -> word.length() < 9 && word.length() > 2)
@@ -34,7 +33,6 @@ public class Service {
                 .map(w -> new Word(w, w.length()))
                 .toList();
         wordDAO.insertWords(wordList);
-
     }
 
     public StringListPuzzle getWords(Integer wordSize) throws SQLException {
@@ -44,11 +42,21 @@ public class Service {
     public void addWordsFromFolder(String folderName) throws IOException, SQLException {
         Path path = Paths.get(folderName);
         DirectoryStream<Path> stream = Files.newDirectoryStream(path);
-        for (Path entry : stream) {
-            if (Files.isRegularFile(entry)) {
-                addNewWord(entry);
-                Files.move(entry, path.resolve("old-resource").resolve(entry.getFileName()));
+        for (Path file : stream) {
+            if (Files.isRegularFile(file)) {
+                Stream<String> lines = Files.lines(file);
+                addWordsFromLines(lines);
+                Files.move(file, path.resolve("old-resource").resolve(file.getFileName()));
             }
+        }
+    }
+
+    public void addWordsFromArticles(List<Article> articles) throws SQLException, IOException {
+        for (Article article: articles
+             ) {
+            Stream<String> lines = Stream.of(article.getContent());
+            addWordsFromLines(lines);
+            article.setIsUse(true);
         }
     }
 

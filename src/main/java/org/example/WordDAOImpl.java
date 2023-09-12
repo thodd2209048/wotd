@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigInteger;
 import java.sql.*;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,5 +96,18 @@ public class WordDAOImpl implements WordDAO {
         }
         statement.close();
         return dbSize;
+    }
+
+    public void addArticleToDB(List<Article> articles) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO articles(title, url, created_at, updated_at, is_use) " +
+                "VALUES(?, ?, now(), now(), ?)");
+        for (Article article: articles
+             ) {
+            statement.setString(1, article.getTitle());
+            statement.setString(2, article.getUrl());
+            statement.setBoolean(3, article.getIsUse());
+        }
+        statement.execute();
+        statement.close();
     }
 }
