@@ -1,10 +1,12 @@
 package org.example;
 
 import java.math.BigInteger;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 public interface WordDAO {
+    public Connection getConnection() throws ClassNotFoundException, SQLException;
     public void close() throws SQLException;
     public void cleanDB() throws SQLException ;
     public void insertWords(List<Word> wordList) throws SQLException;

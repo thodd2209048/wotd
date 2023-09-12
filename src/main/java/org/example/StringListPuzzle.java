@@ -44,7 +44,10 @@ public class StringListPuzzle {
                     })
                     .filter(w-> {
                         if(incorrectLetters != null){
-                            return incorrectLetters.stream().noneMatch(letter -> w.charAt(position - 1) == letter.charAt(0));
+
+                            return incorrectLetters.stream().noneMatch(letter -> {
+                                return w.charAt(position - 1) == letter.charAt(0);
+                            });
                         }
                         return true;
                     })

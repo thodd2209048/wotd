@@ -5,12 +5,13 @@ import lombok.Data;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 @Data
 @AllArgsConstructor
 public class Controller {
-    private final Service service;
+    private final Service service = new Service();
 
     public StringListPuzzle getWords(Integer wordSize) throws SQLException {
         return service.getWords(wordSize);
@@ -22,6 +23,9 @@ public class Controller {
 
     public void cleanDB() throws SQLException {
         service.cleanDB();
+    }
+    public Connection getConnection() throws ClassNotFoundException, SQLException{
+        return service.getConnection();
     }
 
     public void closeConnection() throws SQLException {

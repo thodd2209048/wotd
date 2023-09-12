@@ -12,18 +12,16 @@ import java.util.List;
 @NoArgsConstructor
 public class WordDAOImpl implements WordDAO {
     private static Connection connection;
+    private static final String url = "jdbc:postgresql://localhost:5432/SolveWOTD";
+    private static final String user = "postgres";
+    private static final String password = "123";
 
-    static {
-        try {
+    public Connection getConnection() throws ClassNotFoundException, SQLException {
+        if(connection == null){
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/SolveWOTD",
-                    "postgres",
-                    "123"
-            );
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            connection = DriverManager.getConnection(url, user, password);
         }
+        return connection;
     }
 
     @Override
@@ -81,7 +79,7 @@ public class WordDAOImpl implements WordDAO {
     public void cleanDB() throws SQLException {
         Statement statement = connection.createStatement();
         statement.executeUpdate("DELETE FROM words " +
-                " WHERE word ~ '[^a-zA-Z]' ");
+                " WHERE word ~ '[^a-zA-Z]+' ");
 
         statement.close();
     }
