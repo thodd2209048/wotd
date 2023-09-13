@@ -1,10 +1,22 @@
 package org.example;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Test {
-    public static void main(String[] args) throws IOException {
-        Article article = Crawl.readAnArticle("https://www.binance.com/en/blog/nft/minting-an-nft-is-easier-than-you-think-with-binance-nft-6907048048270523401");
-        System.out.println(article);
+    public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
+        Controller controller = new Controller();
+        controller.getConnection();
+//        Crawl.crawler(1,
+//                "https://www.binance.com/en/blog",
+//                new ArrayList<>());
+//        controller.addWordsFromArticles(Crawl.getArticleList());
+//        controller.addArticleToDB(Crawl.getArticleList());
+//        System.out.println(Crawl.getArticleList().size());
+
+        System.out.println("DB size: "+controller.sizeOfDB());
+        controller.closeConnection();
     }
 }

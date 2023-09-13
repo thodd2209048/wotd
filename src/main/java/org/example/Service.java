@@ -64,6 +64,10 @@ public class Service {
         return wordDAO.sizeOfDB();
     }
 
+    public void addArticleToDB(List<Article> articles) throws SQLException{
+        wordDAO.addArticleToDB(articles);
+    }
+
     public void cleanDB() throws SQLException {
         wordDAO.cleanDB();
     }

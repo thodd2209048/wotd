@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -34,5 +35,13 @@ public class Controller {
 
     public BigInteger sizeOfDB() throws SQLException {
         return service.sizeOfDB();
+    }
+
+    public void addArticleToDB(List<Article> articles) throws SQLException{
+        service.addArticleToDB(articles);
+    }
+
+    public void addWordsFromArticles(List<Article> articles) throws SQLException, IOException{
+        service.addWordsFromArticles(articles);
     }
 }
