@@ -12,6 +12,6 @@ public interface WordDAO {
     public void insertWords(List<Word> wordList) throws SQLException;
     public StringListPuzzle getWords(Integer wordSize) throws SQLException;
     public BigInteger sizeOfDB() throws SQLException;
-
-    public void addArticleToDB(List<Article> articles) throws SQLException;
+    public void addArticleToDB(Article article) throws SQLException;
+    public List<Article> getArticlesFromDB() throws SQLException;
 }

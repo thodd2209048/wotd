@@ -15,7 +15,13 @@ public class Article {
     private String content;
     private ZonedDateTime createdAt;
     private ZonedDateTime updatedAt;
-    private Boolean isUse;
+
+    public Article(String title, String url, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
+        this.title = title;
+        this.url = url;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -23,5 +29,13 @@ public class Article {
         if (o == null || getClass() != o.getClass()) return false;
         Article article = (Article) o;
         return Objects.equals(title, article.title);
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

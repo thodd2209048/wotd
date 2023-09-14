@@ -22,6 +22,12 @@ public class Controller {
         service.addWordsFromFolder(folderName);
     }
 
+    public List<Article> crawlAndRetrieveArticles(Integer maxLevel, Integer maxNumberOfArticles, String url) throws SQLException, IOException {
+        return service.crawlAndRetrieveArticles(maxLevel, maxNumberOfArticles, url);
+    }
+
+
+
     public void cleanDB() throws SQLException {
         service.cleanDB();
     }
@@ -37,11 +43,11 @@ public class Controller {
         return service.sizeOfDB();
     }
 
-    public void addArticleToDB(List<Article> articles) throws SQLException{
-        service.addArticleToDB(articles);
-    }
-
     public void addWordsFromArticles(List<Article> articles) throws SQLException, IOException{
         service.addWordsFromArticles(articles);
+    }
+
+    public Article fetchFromLink(String url) throws SQLException{
+        return service.fetchFromLink(url);
     }
 }

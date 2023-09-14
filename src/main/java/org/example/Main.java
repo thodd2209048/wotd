@@ -10,35 +10,41 @@ public class Main {
         Controller controller = new Controller();
         controller.getConnection();
 
-//        controller.addWordsFromFolder("resource");
-//        System.out.println(controller.sizeOfDB());
+        controller.addWordsFromFolder("resource");
+        System.out.println(controller.sizeOfDB());
+
+        controller.cleanDB();
 //
-//        controller.cleanDB();
-//
-//        controller.closeConnection();
+
 
 
         StringListPuzzle stringListPuzzle = controller.getWords(7);
         printFiveElements(stringListPuzzle.getInputList());
-        StringListPuzzle result = stringListPuzzle.includeFilter(List.of("e", "f", "o"))
-                .excludeFilter(List.of("c", "s", "a", "p", "t", "r", "g", "y"))
-                .singleLetterFilter(1, null, List.of("f"))
-                .singleLetterFilter(2, null, List.of("o"))
-//                .singleLetterFilter(3, null, List.of("l"))
-
-                .singleLetterFilter(4, null, List.of("e"))
-                .singleLetterFilter(5, null, List.of("e"))
-//                .singleLetterFilter(6, "s", null)
-//                .singleLetterFilter(7, null, List.of("t"))
+        stringListPuzzle = stringListPuzzle.includeExcludeFilter(List.of("a", "i", "l","d"), List.of("f", "u", "r", "e", "g","t"))
+                .singleLetterFilter(1, "d", null)
+                .singleLetterFilter(2, "i", null)
+                .singleLetterFilter(3, null, List.of("i"))
+                .singleLetterFilter(4, null, List.of("l"))
+////                .singleLetterFilter(5, null, List.of("e"))
+                .singleLetterFilter(6, "a", null)
+                .singleLetterFilter(7, null, List.of("l"))
                 ;
-        System.out.println(result);
+        System.out.println("Predict: " + stringListPuzzle.getInputList());
+
+
+
+        controller.closeConnection();
     }
 
     public static void printFiveElements(List<String> inputList) {
+        String output = "5 random words: ";
+
         Random random = new Random();
         for (int i = 0; i < 5; i++) {
             int randomIndex = random.nextInt(inputList.size());
-            System.out.println(inputList.get(randomIndex));
+            output += inputList.get(randomIndex) +", ";
         }
+        System.out.println(output);
+        System.out.println("-----");
     }
 }

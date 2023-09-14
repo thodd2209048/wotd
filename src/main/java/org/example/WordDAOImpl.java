@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigInteger;
 import java.sql.*;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class WordDAOImpl implements WordDAO {
     private static final String url = "jdbc:postgresql://localhost:5432/SolveWOTD";
     private static final String user = "postgres";
     private static final String password = "123";
+    private static final ZoneId zoneIdSaiGon = ZoneId.of("Asia/Ho_Chi_Minh");
 
     public Connection getConnection() throws ClassNotFoundException, SQLException {
         if(connection == null){
@@ -98,16 +100,33 @@ public class WordDAOImpl implements WordDAO {
         return dbSize;
     }
 
-    public void addArticleToDB(List<Article> articles) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO articles(title, url, created_at, updated_at, is_use) " +
-                "VALUES(?, ?, now(), now(), ?)");
-        for (Article article: articles
-             ) {
+    public void addArticleToDB(Article article) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO articles(title, url, created_at, updated_at) " +
+                " VALUES(?, ?, now(), now()) " +
+                " ON CONFLICT (title) DO NOTHING; ");
+
+        connection.setAutoCommit(false);
             statement.setString(1, article.getTitle());
             statement.setString(2, article.getUrl());
-            statement.setBoolean(3, article.getIsUse());
-        }
         statement.execute();
+        connection.commit();
         statement.close();
+    }
+
+    public List<Article> getArticlesFromDB() throws SQLException {
+        List<Article> result = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(
+                "SELECT * FROM articles"
+        );
+        while (resultSet.next()){
+            String title = resultSet.getString("title");
+            String url = resultSet.getString("url");
+            ZonedDateTime createdAt = resultSet.getTimestamp("created_at").toInstant().atZone(zoneIdSaiGon);
+            ZonedDateTime updatedAt = resultSet.getTimestamp("updated_at").toInstant().atZone(zoneIdSaiGon);
+            result.add(new Article(title, url, createdAt, updatedAt));
+        }
+        statement.close();
+        return result;
     }
 }
