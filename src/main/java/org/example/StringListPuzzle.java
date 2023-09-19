@@ -12,7 +12,10 @@ public class StringListPuzzle {
     private List<String> inputList;
 
     public StringListPuzzle includeExcludeFilter(List<String> include, List<String> exclude) {
-        List<String> duplicate = exclude.stream().filter(e -> include.contains(e)).toList();
+        List<String> duplicate = new ArrayList<>();
+        if(include!=null){
+            duplicate = exclude.stream().filter(e -> include.contains(e)).toList();
+        }
         if (!duplicate.isEmpty()) {
             throw new RuntimeException("Exclude list is invalid: " +duplicate);
         } else {
@@ -59,14 +62,22 @@ public class StringListPuzzle {
 
     public StringListPuzzle excludeFilter(List<String> exclude) {
         List<String> newList = new ArrayList<>(inputList);
-        newList.removeIf(word -> exclude.stream().anyMatch(word::contains));
+        if(exclude!= null){
+            newList.removeIf(word -> exclude.stream().anyMatch(word::contains));
+        }
         return new StringListPuzzle(newList);
     }
 
     public StringListPuzzle includeFilter(List<String> include) {
-        List<String> newList = inputList.stream()
-                .filter(word -> include.stream().allMatch(word::contains))
-                .toList();
+        List<String> newList = new ArrayList<>(inputList);
+        if(include!=null){
+            newList = inputList.stream()
+                    .filter(word -> include.stream().allMatch(word::contains))
+                    .toList();
+        }
+
         return new StringListPuzzle(newList);
     }
+
+
 }
