@@ -1,4 +1,4 @@
-package org.example;
+package logic;
 
 import java.math.BigInteger;
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package org.example;
+package logic;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,7 +10,6 @@ public class Main {
         Controller controller = new Controller();
         controller.getConnection();
 
-        controller.addWordsFromFolder("resource");
         System.out.println(controller.sizeOfDB());
 
         controller.cleanDB();
@@ -20,14 +19,15 @@ public class Main {
 
         StringListPuzzle stringListPuzzle = controller.getWords(7);
         printFiveElements(stringListPuzzle.getInputList());
-        stringListPuzzle = stringListPuzzle.includeExcludeFilter(List.of("a", "i", "l","d"), List.of("f", "u", "r", "e", "g","t"))
-                .singleLetterFilter(1, "d", null)
-                .singleLetterFilter(2, "i", null)
-                .singleLetterFilter(3, null, List.of("i"))
+        stringListPuzzle = stringListPuzzle.includeExcludeFilter(List.of("e", "t","a","l"),
+                        List.of("d", "o", "s","p","i","w","h","y"))
+//                .singleLetterFilter(1, null, List.of("s"))
+                .singleLetterFilter(2, "e", null)
+                .singleLetterFilter(3, null, List.of("a"))
                 .singleLetterFilter(4, null, List.of("l"))
-////                .singleLetterFilter(5, null, List.of("e"))
-                .singleLetterFilter(6, "a", null)
-                .singleLetterFilter(7, null, List.of("l"))
+                .singleLetterFilter(5, null, List.of("y"))
+//                .singleLetterFilter(6, "a", null)
+                .singleLetterFilter(7, null, List.of("t"))
                 ;
         System.out.println("Predict: " + stringListPuzzle.getInputList());
 

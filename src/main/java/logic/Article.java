@@ -1,9 +1,8 @@
-package org.example;
+package logic;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
