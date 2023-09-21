@@ -17,17 +17,18 @@ public class Main {
 
 
 
-        StringListPuzzle stringListPuzzle = controller.getWords(7);
+        StringListPuzzle stringListPuzzle = controller.getWords(8);
         printFiveElements(stringListPuzzle.getInputList());
-        stringListPuzzle = stringListPuzzle.includeExcludeFilter(List.of("e", "t","a","l"),
-                        List.of("d", "o", "s","p","i","w","h","y"))
-//                .singleLetterFilter(1, null, List.of("s"))
-                .singleLetterFilter(2, "e", null)
-                .singleLetterFilter(3, null, List.of("a"))
-                .singleLetterFilter(4, null, List.of("l"))
-                .singleLetterFilter(5, null, List.of("y"))
-//                .singleLetterFilter(6, "a", null)
-                .singleLetterFilter(7, null, List.of("t"))
+        stringListPuzzle = stringListPuzzle.includeExcludeFilter(List.of("u", "n","t","i"),
+                        List.of("f","c","o"))
+//                .singleLetterFilter(1, null, List.of("c"))
+                .singleLetterFilter(2, null, List.of("u"))
+//                .singleLetterFilter(3, null, List.of("n"))
+//                .singleLetterFilter(4, null, List.of("p"))
+                .singleLetterFilter(5, null, List.of("t"))
+                .singleLetterFilter(6, null, List.of("i"))
+//                .singleLetterFilter(7, null, List.of("t"))
+//                .singleLetterFilter(8, null, List.of("t"))
                 ;
         System.out.println("Predict: " + stringListPuzzle.getInputList());
 

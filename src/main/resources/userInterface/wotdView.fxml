@@ -12,40 +12,40 @@
     <tabs>
         <Tab text="Predict WOTD">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="451.0" prefWidth="600.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="601.0">
                     <children>
-                        <TextField fx:id="fxInputWordLength" onKeyReleased="#onChangeWordLength" layoutX="14.0" layoutY="30.0"  prefHeight="30" prefWidth="47.0" />
+                        <TextField fx:id="fxInputWordLength" layoutX="14.0" layoutY="30.0" onKeyTyped="#onChangeWordLength" prefHeight="30" prefWidth="47.0" />
                         <Label layoutX="15.0" layoutY="60.0" prefHeight="30.0" prefWidth="49.0" text="Include:" />
-                        <TextField fx:id="fxIncludeLetters" onKeyReleased="#onChangeIncludeLetters" layoutX="16.0" layoutY="84.0" prefHeight="30" prefWidth="180.0" />
+                        <TextField fx:id="fxIncludeLetters" layoutX="16.0" layoutY="84.0" onKeyTyped="#onChangeIncludeLetters" prefHeight="30" prefWidth="180.0" />
                         <Label layoutX="210.0" layoutY="60.0" prefHeight="30.0" prefWidth="49.0" text="Exclude:" />
-                        <TextField fx:id="excludeLetters" layoutX="210.0" layoutY="84.0" prefHeight="30" prefWidth="180.0" />
+                        <TextField fx:id="fxExcludeLetters" layoutX="210.0" layoutY="84.0" onKeyTyped="#onChangeExcludeLetters" prefHeight="30" prefWidth="180.0" />
                         <Label layoutX="16.0" layoutY="126.0" prefHeight="30.0" prefWidth="49.0" text="Letter 1" />
-                        <TextField fx:id="letter1Include" layoutX="17.0" layoutY="150.0" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="letter1Exclude" layoutX="65.0" layoutY="150.0" prefHeight="30" prefWidth="180.0" />
+                        <TextField fx:id="fxLetter1Correct" layoutX="17.0" layoutY="150.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
+                        <TextField fx:id="fxLetter1Exclude" layoutX="65.0" layoutY="150.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
                         <Label layoutX="335.0" layoutY="126.0" prefHeight="30.0" prefWidth="49.0" text="Letter 2" />
-                        <TextField fx:id="letter2Include" layoutX="335.0" layoutY="150.0" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="letter2Exclude" layoutX="385.0" layoutY="150.0" prefHeight="30" prefWidth="180.0" />
+                        <TextField fx:id="fxLetter2Correct" layoutX="335.0" layoutY="150.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
+                        <TextField fx:id="fxLetter2Exclude" layoutX="385.0" layoutY="150.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
                         <Label layoutX="16.0" layoutY="180.0" prefHeight="30.0" prefWidth="49.0" text="Letter 3" />
-                        <TextField fx:id="letter3Include" layoutX="17.0" layoutY="204.0" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="letter3Exclude" layoutX="65.0" layoutY="204.0" prefHeight="30" prefWidth="180.0" />
+                        <TextField fx:id="fxLetter3Correct" layoutX="17.0" layoutY="204.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
+                        <TextField fx:id="fxLetter3Exclude" layoutX="65.0" layoutY="204.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
                         <Label layoutX="335.0" layoutY="180.0" prefHeight="30.0" prefWidth="49.0" text="Letter 4" />
-                        <TextField fx:id="letter4Include" layoutX="335.0" layoutY="204.0" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="letter4Exclude" layoutX="385.0" layoutY="204.0" prefHeight="30" prefWidth="180.0" />
+                        <TextField fx:id="fxLetter4Correct" layoutX="335.0" layoutY="204.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
+                        <TextField fx:id="fxLetter4Exclude" layoutX="385.0" layoutY="204.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
                         <Label layoutX="17.0" layoutY="234.0" prefHeight="30.0" prefWidth="49.0" text="Letter 5" />
-                        <TextField fx:id="letter5Include" layoutX="18.0" layoutY="258.0" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="letter5Exclude" layoutX="66.0" layoutY="258.0" prefHeight="30" prefWidth="180.0" />
+                        <TextField fx:id="fxLetter5Correct" layoutX="18.0" layoutY="258.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
+                        <TextField fx:id="fxLetter5Exclude" layoutX="66.0" layoutY="258.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
                         <Label layoutX="335.0" layoutY="237.0" prefHeight="30.0" prefWidth="49.0" text="Letter 6" />
-                        <TextField fx:id="letter6Include" layoutX="335.0" layoutY="261.0" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="letter6Exclude" layoutX="385.0" layoutY="261.0" prefHeight="30" prefWidth="180.0" />
+                        <TextField fx:id="fxLetter6Correct" layoutX="335.0" layoutY="261.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
+                        <TextField fx:id="fxLetter6Exclude" layoutX="385.0" layoutY="261.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
                         <Label layoutX="18.0" layoutY="288.0" prefHeight="30.0" prefWidth="49.0" text="Letter 7" />
-                        <TextField fx:id="letter7Include" layoutX="19.0" layoutY="312.0" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="letter7Exclude" layoutX="67.0" layoutY="312.0" prefHeight="30" prefWidth="180.0" />
+                        <TextField fx:id="fxLetter7Correct" layoutX="19.0" layoutY="312.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
+                        <TextField fx:id="fxLetter7Exclude" layoutX="67.0" layoutY="312.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
                         <Label layoutX="335.0" layoutY="285.0" prefHeight="30.0" prefWidth="49.0" text="Letter 8" />
-                        <TextField fx:id="letter8Include" layoutX="335.0" layoutY="309.0" prefHeight="30" prefWidth="38.0" />
-                        <Label fx:id="result" layoutX="72.0" layoutY="409.0" prefHeight="47.0" prefWidth="455.0" style="-fx-border-color: #111; -fx-padding: 5;" text="Result" />
-                        <TextField fx:id="letter8Exclude" layoutX="385.0" layoutY="309.0" prefHeight="30" prefWidth="180.0" />
+                        <TextField fx:id="fxLetter8Correct" layoutX="335.0" layoutY="309.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
+                        <Label fx:id="fxResult" layoutX="28.0" layoutY="390.0" prefHeight="110.0" wrapText="true" prefWidth="548.0" style="-fx-padding: 5; -fx-border-radius: 5; -fx-background-color: FFFFFF; -fx-border-color: DEE3E9;" text="Result"/>
+                        <TextField fx:id="fxLetter8Exclude" layoutX="385.0" layoutY="309.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
                         <Label layoutX="14.0" prefHeight="30.0" prefWidth="77.0" text="Word lenght" />
-                        <Button layoutX="268.0" layoutY="362.0" mnemonicParsing="false" text="Predict">
+                        <Button layoutX="260.0" layoutY="354.0" mnemonicParsing="false" onAction="#predict" text="Predict">
                             <font>
                                 <Font size="14.0" />
                             </font>

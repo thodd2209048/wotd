@@ -1,0 +1,83 @@
+package userInterface;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class WotdApplication extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        TabPane tabPane = new TabPane();
+
+        Tab filterTab = new Tab("Filter Wotd");
+        tabPane.getTabs().add(filterTab);
+
+        VBox container = new VBox();
+        filterTab.setContent(container);
+
+        VBox wordLenghtContainer = new VBox();
+        Label labelInputWordLength = new Label("Word Length (3-8)");
+        TextField fxInputWordLength = new TextField();
+//        fxInputWordLength.setPrefWidth(47);
+//        fxInputWordLength.setPrefHeight(30);
+        wordLenghtContainer.getChildren().addAll(labelInputWordLength, fxInputWordLength);
+        container.getChildren().addAll(wordLenghtContainer);
+
+//        Include Exclude Container
+        HBox inExContainer = new HBox();
+        inExContainer.setSpacing(5);
+        VBox includeContainer = new VBox();
+        Label labelInclude = new Label("Include letters");
+        TextField fxIncludeLetters = new TextField();
+        includeContainer.getChildren().addAll(labelInclude, fxIncludeLetters);
+
+        VBox excludeContainer = new VBox();
+        Label labelExclude = new Label("Include letters");
+        TextField fxExcludeLetters = new TextField();
+        excludeContainer.getChildren().addAll(labelExclude, fxExcludeLetters);
+
+        inExContainer.getChildren().addAll(includeContainer, excludeContainer);
+        container.getChildren().addAll(inExContainer);
+
+        VBox letterInfoContainer = new VBox();
+        fxInputWordLength.textProperty().addListener((obs, oldValue, newValue) -> {
+            letterInfoContainer.getChildren().clear(); // Xóa các phần tử hiện có trong VBox
+            try {
+                int numberOfElements = Integer.parseInt(newValue);
+                for (int i = 0; i < numberOfElements; i++) {
+                    Label label = new Label("Letter " + (i + 1));
+                    HBox hbox = new HBox();
+                    hbox.setSpacing(5);
+                    TextField correctLetter = new TextField();
+                    TextField excludeLetter = new TextField();
+                    hbox.getChildren().addAll(correctLetter, excludeLetter);
+
+                    letterInfoContainer.getChildren().addAll(label, hbox);
+                }
+            } catch (NumberFormatException ex) {
+                ex.printStackTrace();
+            }
+        });
+        container.getChildren().addAll(letterInfoContainer);
+
+        // Tạo Scene và hiển thị
+        Scene scene = new Scene(tabPane, 550, 600);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}

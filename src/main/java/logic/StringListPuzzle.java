@@ -54,10 +54,9 @@ public class StringListPuzzle {
 
             return new StringListPuzzle(newList);
         } catch (RuntimeException e) {
-            System.out.println("Exception in position " + position);
             e.printStackTrace();
         }
-        return null;
+        return new StringListPuzzle(inputList);
     }
 
     public StringListPuzzle excludeFilter(List<String> exclude) {
