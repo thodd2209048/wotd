@@ -1,10 +1,11 @@
 package userInterface;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import logic.Controller;
+import logic.Article;
 import logic.Service;
 import logic.StringListPuzzle;
 
@@ -15,8 +16,14 @@ import java.util.*;
 import static userInterface.UIUtilities.*;
 
 
-public class FilterController {
+public class WotdController {
     private Service service;
+    @FXML
+    public TextField fxInputCrawlLink;
+    @FXML
+    public Button fxBtnCrawl;
+    @FXML
+    public Label fxCrawlerMessage;
     @FXML
     private TextField fxInputWordLength;
     @FXML
@@ -78,6 +85,26 @@ public class FilterController {
     private List<String> excludeLetterList6 = new ArrayList<>();
     private List<String> excludeLetterList7 = new ArrayList<>();
     private List<String> excludeLetterList8 = new ArrayList<>();
+
+
+    public Article fetchFromLink() throws SQLException, ClassNotFoundException {
+        service.getConnection();
+        String url = fxInputCrawlLink.getText();
+        if(url == null || !url.contains("https://www.binance.com/en/blog")){
+            fxCrawlerMessage.setText("Error: Invalid url");
+            return null;
+        }
+        try {
+            Article newArticle = service.fetchFromLink(url);
+            fxCrawlerMessage.setText("Article added: " + newArticle.getTitle() + " // Link: " + url);
+            fxInputCrawlLink.setText("");
+            fxInputCrawlLink.requestFocus();
+        } catch (SQLException e) {
+            fxCrawlerMessage.setText("Error: Unable to fetch data.");
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public void predict() throws SQLException, ClassNotFoundException {
         Connection connection = service.getConnection();
