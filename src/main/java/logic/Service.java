@@ -51,7 +51,7 @@ public class Service {
     public List<Article> crawlAndRetrieveArticles(Integer maxLevel, Integer maxNumberOfArticles, String url) throws SQLException, IOException {
         List<Article> visited = wordDAO.getArticlesFromDB();
         List<Article> newArticles = new ArrayList<>();
-        crawl(1, maxLevel,maxNumberOfArticles, url, visited, newArticles);
+        crawl(1, maxLevel, maxNumberOfArticles, url, visited, newArticles);
         addWordsFromArticles(newArticles);
         return newArticles;
     }
@@ -95,7 +95,7 @@ public class Service {
     }
 
 
-    public static void crawl(Integer level, Integer maxLevel, Integer maxNumberOfArticles,String url, List<Article> visited, List<Article> newArticles) {
+    public static void crawl(Integer level, Integer maxLevel, Integer maxNumberOfArticles, String url, List<Article> visited, List<Article> newArticles) {
         if (level > maxLevel || newArticles.size() > maxNumberOfArticles) {
             return;
         }
@@ -106,8 +106,8 @@ public class Service {
             Elements links = doc.select("a[href]");
             for (Element link : links) {
                 String nextLink = link.absUrl("href");
-                if(nextLink.contains("https://www.binance.com/en/blog")){
-                    crawl(level + 1, maxLevel,maxNumberOfArticles, nextLink, visited, newArticles);
+                if (nextLink.contains("https://www.binance.com/en/blog")) {
+                    crawl(level + 1, maxLevel, maxNumberOfArticles, nextLink, visited, newArticles);
                 }
             }
         }
@@ -122,7 +122,7 @@ public class Service {
                 String title = doc.title();
                 if (url.contains("https://www.binance.com/en/blog")
                         && visited.stream().noneMatch(v -> v.getTitle().equals(title))
-                        && newArticles.stream().noneMatch(v -> v.getTitle().equals(title)))  {
+                        && newArticles.stream().noneMatch(v -> v.getTitle().equals(title))) {
                     Elements spans = doc.getElementsByClass("richtext-text");
                     String content = spans.text();
                     newArticles.add(new Article(title, url, content, ZonedDateTime.now(), ZonedDateTime.now()));
@@ -136,32 +136,29 @@ public class Service {
         }
     }
 
-    public Article fetchFromLink(String url) throws SQLException {
+    public Article fetchFromLink(String url) throws SQLException, IOException {
         List<Article> visited = wordDAO.getArticlesFromDB();
-        try {
-            org.jsoup.Connection con = Jsoup.connect(url);
-            Document doc = con.get();
 
-            if (con.response().statusCode() == 200) {
-                String title = doc.title();
-                if (visited.stream().noneMatch(v -> v.getTitle().equals(title)))  {
-                    Elements spans = doc.getElementsByClass("richtext-text");
-                    String content = spans.text();
-                    Stream<String> lines = Stream.of(content);
-                    addWordsFromLines(lines);
+        org.jsoup.Connection con = Jsoup.connect(url);
+        Document doc = con.get();
 
-                    Article newArticle = new Article(title, url, content, ZonedDateTime.now(), ZonedDateTime.now());
-                    wordDAO.addArticleToDB(newArticle);
+        if (con.response().statusCode() == 200) {
+            String title = doc.title();
+            if (visited.stream().noneMatch(v -> v.getTitle().equals(title))) {
+                Elements spans = doc.getElementsByClass("richtext-text");
+                String content = spans.text();
+                Stream<String> lines = Stream.of(content);
+                addWordsFromLines(lines);
 
-                    System.out.println("Article added: " + title + " // Link: " + url);
-                    return newArticle;
-                }
-                return null;
+                Article newArticle = new Article(title, url, content, ZonedDateTime.now(), ZonedDateTime.now());
+                wordDAO.addArticleToDB(newArticle);
+
+                System.out.println("Article added: " + title + " // Link: " + url);
+                return newArticle;
             }
-            return null;
-        } catch (IOException e) {
-            return null;
+            throw new RuntimeException("Duplicated data.");
         }
+        throw new RuntimeException("Invalid response status. ");
     }
-
 }
+
