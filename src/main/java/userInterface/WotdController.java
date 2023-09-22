@@ -1,5 +1,6 @@
 package userInterface;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +10,7 @@ import logic.Article;
 import logic.Service;
 import logic.StringListPuzzle;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.*;
@@ -90,7 +92,7 @@ public class WotdController {
     public Article fetchFromLink() throws SQLException, ClassNotFoundException {
         service.getConnection();
         String url = fxInputCrawlLink.getText();
-        if(url == null || !url.contains("https://www.binance.com/en/blog")){
+        if (url == null || !url.contains("https://www.binance.com/en/blog")) {
             fxCrawlerMessage.setText("Error: Invalid url");
             return null;
         }
@@ -99,7 +101,7 @@ public class WotdController {
             fxCrawlerMessage.setText("Article added: " + newArticle.getTitle() + " // Link: " + url);
             fxInputCrawlLink.setText("");
             fxInputCrawlLink.requestFocus();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             fxCrawlerMessage.setText("Error: Unable to fetch data.");
             e.printStackTrace();
         }
@@ -126,6 +128,48 @@ public class WotdController {
         predictResult += "\nPredict: " + stringListPuzzle.getInputList();
         fxResult.setText(predictResult);
 //        service.closeConnection();
+    }
+
+    public void clear(ActionEvent actionEvent) {
+        fxInputWordLength.setText("");
+        fxIncludeLetters.setText("");
+        fxExcludeLetters.setText("");
+        fxLetter1Correct.setText("");
+        fxLetter2Correct.setText("");
+        fxLetter3Correct.setText("");
+        fxLetter5Correct.setText("");
+        fxLetter4Correct.setText("");
+        fxLetter6Correct.setText("");
+        fxLetter7Correct.setText("");
+        fxLetter8Correct.setText("");
+        fxLetter1Exclude.setText("");
+        fxLetter2Exclude.setText("");
+        fxLetter3Exclude.setText("");
+        fxLetter4Exclude.setText("");
+        fxLetter5Exclude.setText("");
+        fxLetter6Exclude.setText("");
+        fxLetter7Exclude.setText("");
+        fxLetter8Exclude.setText("");
+        fxResult.setText("");
+        wordLength = null;
+        includeLetterList = null;
+        excludeLetterList = null;
+        letter1 = null;
+        letter2 = null;
+        letter3 = null;
+        letter4 = null;
+        letter5 = null;
+        letter6 = null;
+        letter7 = null;
+        letter8 = null;
+        excludeLetterList1 = null;
+        excludeLetterList2 = null;
+        excludeLetterList3 = null;
+        excludeLetterList4 = null;
+        excludeLetterList5 = null;
+        excludeLetterList6 = null;
+        excludeLetterList7 = null;
+        excludeLetterList8 = null;
     }
 
     private String printFiveElements(List<String> inputList) {
@@ -293,7 +337,7 @@ public class WotdController {
         textFieldLetterHashMap.put(fxLetter6Exclude, "letter6");
         textFieldLetterHashMap.put(fxLetter7Exclude, "letter7");
         textFieldLetterHashMap.put(fxLetter8Exclude, "letter8");
-
     }
+
 
 }

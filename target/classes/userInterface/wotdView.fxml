@@ -8,48 +8,78 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.WotdController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0"
+         prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1"
+         xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.WotdController">
     <tabs>
         <Tab text="Predict WOTD">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="600.0">
                     <children>
-                        <TextField fx:id="fxInputWordLength" layoutX="14.0" layoutY="30.0" onKeyTyped="#onChangeWordLength" prefHeight="30" prefWidth="47.0" />
-                        <Label layoutX="15.0" layoutY="60.0" prefHeight="30.0" prefWidth="49.0" text="Include:" />
-                        <TextField fx:id="fxIncludeLetters" layoutX="16.0" layoutY="84.0" onKeyTyped="#onChangeIncludeLetters" prefHeight="30" prefWidth="180.0" />
-                        <Label layoutX="210.0" layoutY="60.0" prefHeight="30.0" prefWidth="49.0" text="Exclude:" />
-                        <TextField fx:id="fxExcludeLetters" layoutX="210.0" layoutY="84.0" onKeyTyped="#onChangeExcludeLetters" prefHeight="30" prefWidth="180.0" />
-                        <Label layoutX="16.0" layoutY="126.0" prefHeight="30.0" prefWidth="49.0" text="Letter 1" />
-                        <TextField fx:id="fxLetter1Correct" layoutX="17.0" layoutY="150.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="fxLetter1Exclude" layoutX="65.0" layoutY="150.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
-                        <Label layoutX="335.0" layoutY="126.0" prefHeight="30.0" prefWidth="49.0" text="Letter 2" />
-                        <TextField fx:id="fxLetter2Correct" layoutX="335.0" layoutY="150.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="fxLetter2Exclude" layoutX="385.0" layoutY="150.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
-                        <Label layoutX="16.0" layoutY="180.0" prefHeight="30.0" prefWidth="49.0" text="Letter 3" />
-                        <TextField fx:id="fxLetter3Correct" layoutX="17.0" layoutY="204.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="fxLetter3Exclude" layoutX="65.0" layoutY="204.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
-                        <Label layoutX="335.0" layoutY="180.0" prefHeight="30.0" prefWidth="49.0" text="Letter 4" />
-                        <TextField fx:id="fxLetter4Correct" layoutX="335.0" layoutY="204.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="fxLetter4Exclude" layoutX="385.0" layoutY="204.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
-                        <Label layoutX="17.0" layoutY="234.0" prefHeight="30.0" prefWidth="49.0" text="Letter 5" />
-                        <TextField fx:id="fxLetter5Correct" layoutX="18.0" layoutY="258.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="fxLetter5Exclude" layoutX="66.0" layoutY="258.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
-                        <Label layoutX="335.0" layoutY="237.0" prefHeight="30.0" prefWidth="49.0" text="Letter 6" />
-                        <TextField fx:id="fxLetter6Correct" layoutX="335.0" layoutY="261.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="fxLetter6Exclude" layoutX="385.0" layoutY="261.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
-                        <Label layoutX="18.0" layoutY="288.0" prefHeight="30.0" prefWidth="49.0" text="Letter 7" />
-                        <TextField fx:id="fxLetter7Correct" layoutX="19.0" layoutY="312.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="fxLetter7Exclude" layoutX="67.0" layoutY="312.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
-                        <Label layoutX="335.0" layoutY="285.0" prefHeight="30.0" prefWidth="49.0" text="Letter 8" />
-                        <TextField fx:id="fxLetter8Correct" layoutX="335.0" layoutY="309.0" onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0" />
-                        <TextField fx:id="fxLetter8Exclude" layoutX="385.0" layoutY="309.0" onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0" />
-                        <Label layoutX="14.0" prefHeight="30.0" prefWidth="77.0" text="Word lenght" />
-                        <Button layoutX="260.0" layoutY="354.0" mnemonicParsing="false" onAction="#predict" text="Predict">
+                        <TextField fx:id="fxInputWordLength" layoutX="14.0" layoutY="30.0"
+                                   onKeyTyped="#onChangeWordLength" prefHeight="30" prefWidth="47.0"/>
+                        <Label layoutX="15.0" layoutY="60.0" prefHeight="30.0" prefWidth="49.0" text="Include:"/>
+                        <TextField fx:id="fxIncludeLetters" layoutX="16.0" layoutY="84.0"
+                                   onKeyTyped="#onChangeIncludeLetters" prefHeight="30" prefWidth="180.0"/>
+                        <Label layoutX="210.0" layoutY="60.0" prefHeight="30.0" prefWidth="49.0" text="Exclude:"/>
+                        <TextField fx:id="fxExcludeLetters" layoutX="210.0" layoutY="84.0"
+                                   onKeyTyped="#onChangeExcludeLetters" prefHeight="30" prefWidth="180.0"/>
+                        <Label layoutX="16.0" layoutY="126.0" prefHeight="30.0" prefWidth="49.0" text="Letter 1"/>
+                        <TextField fx:id="fxLetter1Correct" layoutX="17.0" layoutY="150.0"
+                                   onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0"/>
+                        <TextField fx:id="fxLetter1Exclude" layoutX="65.0" layoutY="150.0"
+                                   onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0"/>
+                        <Label layoutX="335.0" layoutY="126.0" prefHeight="30.0" prefWidth="49.0" text="Letter 2"/>
+                        <TextField fx:id="fxLetter2Correct" layoutX="335.0" layoutY="150.0"
+                                   onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0"/>
+                        <TextField fx:id="fxLetter2Exclude" layoutX="385.0" layoutY="150.0"
+                                   onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0"/>
+                        <Label layoutX="16.0" layoutY="180.0" prefHeight="30.0" prefWidth="49.0" text="Letter 3"/>
+                        <TextField fx:id="fxLetter3Correct" layoutX="17.0" layoutY="204.0"
+                                   onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0"/>
+                        <TextField fx:id="fxLetter3Exclude" layoutX="65.0" layoutY="204.0"
+                                   onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0"/>
+                        <Label layoutX="335.0" layoutY="180.0" prefHeight="30.0" prefWidth="49.0" text="Letter 4"/>
+                        <TextField fx:id="fxLetter4Correct" layoutX="335.0" layoutY="204.0"
+                                   onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0"/>
+                        <TextField fx:id="fxLetter4Exclude" layoutX="385.0" layoutY="204.0"
+                                   onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0"/>
+                        <Label layoutX="17.0" layoutY="234.0" prefHeight="30.0" prefWidth="49.0" text="Letter 5"/>
+                        <TextField fx:id="fxLetter5Correct" layoutX="18.0" layoutY="258.0"
+                                   onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0"/>
+                        <TextField fx:id="fxLetter5Exclude" layoutX="66.0" layoutY="258.0"
+                                   onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0"/>
+                        <Label layoutX="335.0" layoutY="237.0" prefHeight="30.0" prefWidth="49.0" text="Letter 6"/>
+                        <TextField fx:id="fxLetter6Correct" layoutX="335.0" layoutY="261.0"
+                                   onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0"/>
+                        <TextField fx:id="fxLetter6Exclude" layoutX="385.0" layoutY="261.0"
+                                   onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0"/>
+                        <Label layoutX="18.0" layoutY="288.0" prefHeight="30.0" prefWidth="49.0" text="Letter 7"/>
+                        <TextField fx:id="fxLetter7Correct" layoutX="19.0" layoutY="312.0"
+                                   onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0"/>
+                        <TextField fx:id="fxLetter7Exclude" layoutX="67.0" layoutY="312.0"
+                                   onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0"/>
+                        <Label layoutX="335.0" layoutY="285.0" prefHeight="30.0" prefWidth="49.0" text="Letter 8"/>
+                        <TextField fx:id="fxLetter8Correct" layoutX="335.0" layoutY="309.0"
+                                   onKeyTyped="#onChangeCorrectLetter" prefHeight="30" prefWidth="38.0"/>
+                        <TextField fx:id="fxLetter8Exclude" layoutX="385.0" layoutY="309.0"
+                                   onKeyTyped="#onChangExcludeLetter" prefHeight="30" prefWidth="180.0"/>
+                        <Label layoutX="14.0" prefHeight="30.0" prefWidth="77.0" text="Word lenght"/>
+                        <Button layoutX="269.0" layoutY="354.0" mnemonicParsing="false" onAction="#predict"
+                                style="-fx-background-color: #07CCFF;" text="Predict">
                             <font>
-                                <Font size="14.0" />
+                                <Font size="14.0"/>
                             </font>
                         </Button>
-                        <Label fx:id="fxResult" layoutX="28.0" layoutY="390.0" prefHeight="110.0" prefWidth="548.0" style="-fx-padding: 5; -fx-border-radius: 5; -fx-background-color: FFFFFF; -fx-border-color: DEE3E9;" text="Result" wrapText="true" />
+                        <Label fx:id="fxResult" layoutX="28.0" layoutY="390.0" prefHeight="110.0" prefWidth="548.0"
+                               style="-fx-padding: 5; -fx-border-radius: 5; -fx-background-color: FFFFFF; -fx-border-color: DEE3E9;"
+                               text="Result" wrapText="true"/>
+                        <Button fx:id="fxBtnClear" layoutX="524.0" layoutY="354.0" mnemonicParsing="false"
+                                onAction="#clear" text="Clear">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Button>
                     </children>
                 </AnchorPane>
             </content>
@@ -58,17 +88,20 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
-                        <Label layoutX="14.0" layoutY="14.0" text="Crawl a link" />
-                        <TextField fx:id="fxInputCrawlLink" layoutX="14.0" layoutY="32.0" prefHeight="26.0" prefWidth="510.0" text="https://www.binance.com/en/blog/" />
-                        <Button fx:id="fxBtnCrawl" layoutX="532.0" layoutY="32.0" mnemonicParsing="false" onAction="#fetchFromLink" prefHeight="26.0" prefWidth="54.0" text="Crawl" />
-                        <Label fx:id="fxCrawlerMessage" layoutX="14.0" layoutY="440.0" prefHeight="50.0" prefWidth="574.0" text="Message:" wrapText="true" />
+                        <Label layoutX="14.0" layoutY="14.0" text="Crawl a link"/>
+                        <TextField fx:id="fxInputCrawlLink" layoutX="14.0" layoutY="32.0" prefHeight="26.0"
+                                   prefWidth="510.0" text="https://www.binance.com/en/blog/"/>
+                        <Button fx:id="fxBtnCrawl" layoutX="532.0" layoutY="32.0" mnemonicParsing="false"
+                                onAction="#fetchFromLink" prefHeight="26.0" prefWidth="54.0" text="Crawl"/>
+                        <Label fx:id="fxCrawlerMessage" layoutX="14.0" layoutY="440.0" prefHeight="50.0"
+                               prefWidth="574.0" text="Message:" wrapText="true"/>
                     </children>
                 </AnchorPane>
             </content>
         </Tab>
         <Tab text="Untitled Tab">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
             </content>
         </Tab>
     </tabs>

@@ -47,7 +47,7 @@ public class Controller {
         service.addWordsFromArticles(articles);
     }
 
-    public Article fetchFromLink(String url) throws SQLException{
+    public Article fetchFromLink(String url) throws SQLException, IOException {
         return service.fetchFromLink(url);
     }
 }
