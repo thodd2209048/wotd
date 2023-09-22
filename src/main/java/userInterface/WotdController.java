@@ -309,7 +309,7 @@ public class WotdController {
     }
 
     private boolean isInvalidIncludeLetter(String letter) {
-        if (!isLetter(letter)) return true;
+        if (!isLetter(letter) && !letter.equals("\t")) return true;
         if (includeLetterList != null && includeLetterList.contains(letter)) return true;
         return false;
     }
