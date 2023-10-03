@@ -1,5 +1,7 @@
 package logic;
 
+import userInterface.WotdController;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -7,14 +9,14 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
-        Controller controller = new Controller();
-        controller.getConnection();
+        Service service = new Service();
+        service.getConnection();
 
-        controller.fetchFromLink(
-                "https://www.binance.com/en/blog/ecosystem/back-to-school-with-binance-academy-the-crypto-education-boom-of-2023-1809654410375699957");
-        System.out.println(controller.sizeOfDB());
+        service.fetchFromLink(
+                "https://academy.binance.com/en/glossary/defi");
+        System.out.println(service.sizeOfDB());
 
-        controller.cleanDB();
+        service.cleanDB();
 //
 
 
@@ -36,7 +38,7 @@ public class Main {
 
 
 
-        controller.closeConnection();
+        service.closeConnection();
     }
 
     public static void printFiveElements(List<String> inputList) {

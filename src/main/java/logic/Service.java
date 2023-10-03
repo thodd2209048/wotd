@@ -142,23 +142,35 @@ public class Service {
         org.jsoup.Connection con = Jsoup.connect(url);
         Document doc = con.get();
 
-        if (con.response().statusCode() == 200) {
-            String title = doc.title();
-            if (visited.stream().noneMatch(v -> v.getTitle().equals(title))) {
-                Elements spans = doc.getElementsByClass("richtext-text");
-                String content = spans.text();
-                Stream<String> lines = Stream.of(content);
-                addWordsFromLines(lines);
+        if (con.response().statusCode() != 200) {
+            throw new RuntimeException("Invalid response status. ");
+        }
 
-                Article newArticle = new Article(title, url, content, ZonedDateTime.now(), ZonedDateTime.now());
-                wordDAO.addArticleToDB(newArticle);
+        String title = doc.title();
+        String content = "";
+        Elements rows = new Elements();
 
-                System.out.println("Article added: " + title + " // Link: " + url);
-                return newArticle;
-            }
+        if (visited.stream().anyMatch(v -> v.getTitle().equals(title))) {
             throw new RuntimeException("Duplicated data.");
         }
-        throw new RuntimeException("Invalid response status. ");
+
+        if (url.contains("https://www.binance.com/en/blog")){
+            rows = doc.getElementsByClass("richtext-text");
+        } else if (url.contains("https://academy.binance.com/en")){
+            rows = doc.getElementsByClass("e18tjeot2");
+        }
+
+        content = rows.text();
+        System.out.println(content);
+        Stream<String> lines = Stream.of(content);
+        addWordsFromLines(lines);
+        Article newArticle = new Article(title, url, content, ZonedDateTime.now(), ZonedDateTime.now());
+        wordDAO.addArticleToDB(newArticle);
+
+        System.out.println("Article added: " + title + " // Link: " + url);
+        return newArticle;
+
     }
+
 }
 
