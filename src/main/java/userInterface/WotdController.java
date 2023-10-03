@@ -92,7 +92,9 @@ public class WotdController {
     public Article fetchFromLink() throws SQLException, ClassNotFoundException {
         service.getConnection();
         String url = fxInputCrawlLink.getText();
-        if (url == null || !url.contains("https://www.binance.com/en/blog")) {
+        if (url == null ||
+                (!url.contains("https://www.binance.com/en/blog") &&
+                !url.contains("https://academy.binance.com/en"))) {
             fxCrawlerMessage.setText("Error: Invalid url");
             return null;
         }
@@ -309,7 +311,7 @@ public class WotdController {
     }
 
     private boolean isInvalidIncludeLetter(String letter) {
-        if (!isLetter(letter) && !letter.equals("\t")) return true;
+        if (!isLetter(letter) && !letter.equals("\t") && !letter.equals("\b"))  return true;
         if (includeLetterList != null && includeLetterList.contains(letter)) return true;
         return false;
     }

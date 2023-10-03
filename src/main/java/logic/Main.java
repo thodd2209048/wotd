@@ -10,6 +10,8 @@ public class Main {
         Controller controller = new Controller();
         controller.getConnection();
 
+        controller.fetchFromLink(
+                "https://www.binance.com/en/blog/ecosystem/back-to-school-with-binance-academy-the-crypto-education-boom-of-2023-1809654410375699957");
         System.out.println(controller.sizeOfDB());
 
         controller.cleanDB();
@@ -17,20 +19,20 @@ public class Main {
 
 
 
-        StringListPuzzle stringListPuzzle = controller.getWords(8);
-        printFiveElements(stringListPuzzle.getInputList());
-        stringListPuzzle = stringListPuzzle.includeExcludeFilter(List.of("u", "n","t","i"),
-                        List.of("f","c","o"))
-//                .singleLetterFilter(1, null, List.of("c"))
-                .singleLetterFilter(2, null, List.of("u"))
-//                .singleLetterFilter(3, null, List.of("n"))
-//                .singleLetterFilter(4, null, List.of("p"))
-                .singleLetterFilter(5, null, List.of("t"))
-                .singleLetterFilter(6, null, List.of("i"))
-//                .singleLetterFilter(7, null, List.of("t"))
-//                .singleLetterFilter(8, null, List.of("t"))
-                ;
-        System.out.println("Predict: " + stringListPuzzle.getInputList());
+//        StringListPuzzle stringListPuzzle = controller.getWords(8);
+//        printFiveElements(stringListPuzzle.getInputList());
+//        stringListPuzzle = stringListPuzzle.includeExcludeFilter(List.of("u", "n","t","i"),
+//                        List.of("f","c","o"))
+////                .singleLetterFilter(1, null, List.of("c"))
+//                .singleLetterFilter(2, null, List.of("u"))
+////                .singleLetterFilter(3, null, List.of("n"))
+////                .singleLetterFilter(4, null, List.of("p"))
+//                .singleLetterFilter(5, null, List.of("t"))
+//                .singleLetterFilter(6, null, List.of("i"))
+////                .singleLetterFilter(7, null, List.of("t"))
+////                .singleLetterFilter(8, null, List.of("t"))
+//                ;
+//        System.out.println("Predict: " + stringListPuzzle.getInputList());
 
 
 
